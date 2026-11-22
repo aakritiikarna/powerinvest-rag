@@ -1,0 +1,10 @@
+import { Bookmark, BookmarkCheck, ChevronRight, MoreHorizontal } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { StatusPill } from './shared';
+import CompanyLogo from './CompanyLogo';
+import { formatCurrency } from '../utils/calculations';
+
+export default function StockTable({ stocks, watchlist = [], onToggleWatch, compact = false, showSector = true }) {
+  if (!stocks.length) return <div className="table-empty">No stocks match this view. Try another search or category.</div>;
+  return <div className="table-wrap"><table className="stock-table"><thead><tr><th>Company</th>{showSector && <th>Sector</th>}<th>Price</th><th>24h change</th><th className="align-right">{compact ? '' : 'Action'}</th></tr></thead><tbody>{stocks.map((stock) => { const saved = watchlist.includes(stock.symbol); return <tr key={stock.symbol}><td><Link to={`/explorer?symbol=${stock.symbol}`} className="company-cell"><CompanyLogo symbol={stock.symbol} name={stock.name} /><span><strong>{stock.name}</strong><small>{stock.symbol}</small></span></Link></td>{showSector && <td><span className="sector-text">{stock.sector}</span></td>}<td className="price-cell">{formatCurrency(stock.price)}</td><td><StatusPill value={stock.change} /></td><td className="align-right">{compact ? <button className={`watch-button ${saved ? 'saved' : ''}`} onClick={() => onToggleWatch?.(stock.symbol)} aria-label={`${saved ? 'Remove' : 'Add'} ${stock.symbol} ${saved ? 'from' : 'to'} watchlist`}>{saved ? <BookmarkCheck size={16} /> : <Bookmark size={16} />}</button> : <div className="row-actions"><button className={`watch-button ${saved ? 'saved' : ''}`} onClick={() => onToggleWatch?.(stock.symbol)} aria-label={`${saved ? 'Remove' : 'Add'} ${stock.symbol} ${saved ? 'from' : 'to'} watchlist`}>{saved ? <BookmarkCheck size={16} /> : <Bookmark size={16} />}</button><Link className="table-arrow" to={`/explorer?symbol=${stock.symbol}`} aria-label={`View ${stock.symbol} details`}><ChevronRight size={16} /></Link><button className="watch-button" aria-label="More options"><MoreHorizontal size={16} /></button></div>}</td></tr>; })}</tbody></table></div>;
+}

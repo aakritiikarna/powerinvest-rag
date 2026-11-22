@@ -1,0 +1,11 @@
+{
+  "routes": [
+    { "path": "/", "title": "Dashboard" },
+    { "path": "/explorer", "title": "Market Explorer" },
+    { "path": "/portfolio", "title": "My Portfolio" },
+    { "path": "/insights", "title": "Investor Insights" },
+    { "path": "/assistant", "title": "AI Financial Assistant" },
+    { "path": "/watchlist", "title": "Watchlist" },
+    { "path": "/settings", "title": "Settings" }
+  ]
+}

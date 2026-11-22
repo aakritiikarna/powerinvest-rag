@@ -1,0 +1,27 @@
+{
+  "name": "powerinvest",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "server": "node server/index.js",
+    "ingest": "node server/scripts/ingest.js",
+    "retrieve": "node server/scripts/retrieve.js",
+    "test": "node --test \"server/tests/*.test.js\""
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "framer-motion": "^14.14.0",
+    "lucide-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest",
+    "recharts": "latest",
+    "vite": "latest"
+  }
+}
